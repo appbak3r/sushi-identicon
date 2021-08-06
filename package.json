@@ -14,8 +14,13 @@
     "build": "parcel build --no-cache ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "identicon",
+    "avatar",
+    "user icon",
+    "icon generator"
+  ],
+  "author": "@appbak3r",
   "license": "MIT",
   "dependencies": {
     "blobshape": "^1.0.0",
