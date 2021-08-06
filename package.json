@@ -1,6 +1,6 @@
 {
   "name": "@appbak3r/sushi-identicon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yet another identicon library. Get unique sushi icon as SVG",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
