@@ -4,7 +4,7 @@ Yet another tiny identicon library.
 
 Get Sushi identicon as SVG.
 
-![Example](demo/example.png)
+![Example](https://raw.githubusercontent.com/appbak3r/sushi-identicon/main/demo/example.png)
 
 ## Usage
 
