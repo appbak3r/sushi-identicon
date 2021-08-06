@@ -1,1 +1,1 @@
-{"mappings":"AGaA,OAAO,MAAM,0BAA2B,MAAM,WAoC7C,CAAC","sources":["src/src/polyfill.ts","src/src/colors.ts","src/src/generatePaper.ts","src/src/index.ts"],"sourcesContent":[null,null,null,null],"names":[],"version":3,"file":"index.d.ts.map"}
+{"mappings":"AGaA,kCACE,IAAI,EAAE,MAAM,EACZ,cAAc,CAAC,EAAE,KAAK,GACrB,aAAa,CAAC;AACjB,kCAAkC,IAAI,EAAE,MAAM,EAAE,cAAc,EAAE,IAAI,GAAG,MAAM,CAAC","sources":["src/src/polyfill.ts","src/src/colors.ts","src/src/generatePaper.ts","src/src/index.ts"],"sourcesContent":[null,null,null,null],"names":[],"version":3,"file":"index.d.ts.map"}
