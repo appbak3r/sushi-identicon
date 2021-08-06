@@ -1,11 +1,7 @@
-import { applyPolyfill } from "./polyfill";
-applyPolyfill();
-
 import MersenneTwister from "mersenne-twister";
 import seedrandom from "seedrandom";
 import { colord } from "colord";
 import { colors } from "./colors";
-import { generatePaper } from "./generatePaper";
 // @ts-ignore
 import blobshape from "blobshape";
 
@@ -31,7 +27,7 @@ export function generateIdentIcon(
   svg.setAttribute("y", "0");
   svg.setAttribute("viewBox", `0 0 ${diameter} ${diameter}`);
 
-  const circle = document.createElement("circle");
+  const circle = document.createElementNS(SVGNS, "circle");
   circle.setAttribute("r", (diameter / 2).toString());
   circle.setAttribute("cx", (diameter / 2).toString());
   circle.setAttribute("cy", (diameter / 2).toString());
@@ -54,7 +50,7 @@ export function generateIdentIcon(
     svg.appendChild(shape);
   }
 
-  return outputAsString ? (svg.outerHTML as any) : svg;
+  return outputAsString ? svg.outerHTML : svg;
 }
 
 const generateShape = (
@@ -84,7 +80,7 @@ const generateShape = (
     edges,
   });
 
-  const shape = document.createElement("path");
+  const shape = document.createElementNS(SVGNS, "path");
 
   shape.setAttribute(
     "transform",
