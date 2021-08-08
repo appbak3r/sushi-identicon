@@ -1,7 +1,7 @@
 {
   "name": "@appbak3r/sushi-identicon",
-  "version": "1.0.4",
-  "description": "Yet another identicon library. Get unique sushi icon as SVG",
+  "version": "2.0.0",
+  "description": "Yet another identicon library. Get unique icon as SVG",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -25,7 +25,6 @@
   "dependencies": {
     "@swc/helpers": "^0.2.12",
     "blobshape": "^1.0.0",
-    "colord": "^2.1.0",
     "mersenne-twister": "^1.1.0",
     "seedrandom": "^3.0.5"
   },

@@ -1,6 +1,7 @@
 import { generateIdentIcon } from "../src";
 
 const root = document.getElementById("root");
+
 for (let i = 0; i < 50; i++) {
   const icon = generateIdentIcon(i.toString());
 

@@ -2,7 +2,7 @@
 
 Yet another tiny identicon library.
 
-Get Sushi identicon as SVG.
+Get unique identicon as SVG.
 
 ![Example](https://raw.githubusercontent.com/appbak3r/sushi-identicon/main/demo/example.png)
 

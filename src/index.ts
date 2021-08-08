@@ -1,6 +1,5 @@
 import MersenneTwister from "mersenne-twister";
 import seedrandom from "seedrandom";
-import { colord } from "colord";
 import { colors } from "./colors";
 // @ts-ignore
 import blobshape from "blobshape";
@@ -18,7 +17,9 @@ export function generateIdentIcon(
 ): string | SVGSVGElement {
   const range = seedrandom(hash);
   const generator = new MersenneTwister(range.int32());
-  const shiftedColors = hueShift([...colors], generator);
+  const shiftedColors = [...colors];
+  const backgroundColors = ["#ECF0F1"];
+
   const diameter = 100;
 
   const svg = document.createElementNS(SVGNS, "svg");
@@ -31,21 +32,13 @@ export function generateIdentIcon(
   circle.setAttribute("r", (diameter / 2).toString());
   circle.setAttribute("cx", (diameter / 2).toString());
   circle.setAttribute("cy", (diameter / 2).toString());
-  circle.setAttribute("fill", getColor(shiftedColors, generator));
+  circle.setAttribute("fill", getColor(backgroundColors, generator));
   svg.appendChild(circle);
-
-  shiftedColors.push("#ffffff");
 
   const shapeCount = 3;
 
   for (let i = 0; i < shapeCount; i++) {
-    const shape = generateShape(
-      generator,
-      shiftedColors,
-      diameter,
-      i,
-      shapeCount
-    );
+    const shape = generateShape(generator, shiftedColors, diameter);
 
     svg.appendChild(shape);
   }
@@ -56,14 +49,15 @@ export function generateIdentIcon(
 const generateShape = (
   generator: MersenneTwister,
   colors: string[],
-  diameter: number,
-  i: number,
-  total: number
+  diameter: number
 ) => {
   const center = diameter / 2;
-  const gap = diameter / 8;
 
-  const size = (diameter / total) * (total - i) + gap;
+  let size = diameter * generator.random();
+
+  while (size < 20) {
+    size += size;
+  }
 
   let stringId = generator.random().toString();
 
@@ -76,17 +70,20 @@ const generateShape = (
 
   const { path } = blobshape({
     size,
+    growth: 8,
     seed: generator.random().toString(),
     edges,
   });
 
   const shape = document.createElementNS(SVGNS, "path");
+  const position = generator.random() > 0.5 ? -1 : 1;
+  const shapeCenter = center - size / 2;
 
   shape.setAttribute(
     "transform",
     `translate(${
-      center - size / 2 + generator.random() * (generator.random() * 10)
-    }, ${center - size / 2 + generator.random() * (generator.random() * 10)})`
+      shapeCenter + ((position * diameter) / 2) * generator.random()
+    }, ${shapeCenter + ((position * diameter) / 2) * generator.random()})`
   );
 
   shape.setAttribute("d", path);
@@ -99,20 +96,3 @@ const getColor = (colors: string[], generator: MersenneTwister) => {
   const idx = Math.floor(colors.length * generator.random());
   return colors.splice(idx, 1)[0];
 };
-
-const hueShift = (colors: string[], generator: MersenneTwister) => {
-  const amount = generator.random() * 30 - 30 / 2;
-
-  return colors.map((hex: string) => colorRotate(hex, amount));
-};
-
-function colorRotate(hex: string, degrees: number) {
-  const hsl = colord(hex).toHsl();
-  let hue = hsl.h;
-
-  hue = (hue + degrees) % 360;
-  hue = hue < 0 ? 360 + hue : hue;
-  hsl.h = hue;
-
-  return colord(hsl).toHex();
-}
